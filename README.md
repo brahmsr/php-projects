@@ -1,4 +1,8 @@
-# Projetos em PhP
+<p align="center">
+  <img src="assets/images/new-php-logo.svg" width="100" height="100">
+</p>
+
+# Projetos em PhP 
 Projetos em PhP para estudo, funções, php com mysql, utilização de Js e afins
 
 ## Homepage do site que desempenha funções em php
