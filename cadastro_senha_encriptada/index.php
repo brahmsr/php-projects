@@ -25,18 +25,19 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-            <h3 class="">Cadastro utilizando password_hash</h3>
+                <h3 class="">Cadastro utilizando password_hash</h3>
             </div>
             <div class="card-body">
 
                 <!-- mensagem -->
                 <?php
+                session_start();
                 if (isset($_SESSION['message'])) {
                 ?>
                     <div class="container mt-5">
                         <div class="alert alert-primary alert-dismissible fade show d-flex justify-content-between" role="alert">
                             <?= $_SESSION['message']; ?>
-                            <div style="">
+                            <div>
                                 <button type="button" class="btn-close custom-close-button" data-bs-dismiss="alert" aria-label="Close"><i class="fas fa-xmark"></i></button>
                             </div>
                         </div>
@@ -47,7 +48,9 @@
                 ?>
                 <!-- mensagem -->
 
-                <form action="code/register.php" method="POST">
+                <p>Esse método gera um hash da sua senha, fazendo com que vazamentos de banco de dados sejam inutilizados caso ocorram, é o método mais seguro atualmente</p>
+                <hr>
+                <form action="register.php" method="POST">
                     <div class="mb-3">
                         <div class="row">
                             <div class="col-md-4">
@@ -70,6 +73,7 @@
                         </div>
                 </form>
                 <hr>
+                <!-- Tabela de registros feitos -->
                 <p class="text-center fw-light">
                     Registros feitos até o momento:
                 </p>
@@ -80,16 +84,39 @@
 
                     if (mysqli_num_rows($query_run) > 0) { //se o numero de registros for maior que zero
                         foreach ($query_run as $resultado) {
-                            $resultado['id'];
-                            $resultado['email'];
-                            $resultado['nome'];
-                            $resultado['senha'];
+                    ?>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Senha Encriptada</th>
+                        </tr>
+                    </thead>
+                    <td>
+                        <?= $resultado['id']; ?>
+                    </td>
+                    <td>
+                        <?= $resultado['email']; ?>
+                    </td>
+                    <td>
+                        <?= $resultado['nome']; ?>
+                    </td>
+                    <td>
+                        <?= $resultado['senha']; ?>
+                    </td>
+                </table>
+
+        <?php
                         }
                     } else {
                         echo "Sem registros para mostrar";
                     }
-                    ?>
-                </p>
+        ?>
+                <!-- Tabela de registros feitos -->
+        </p>
+        
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 <?php
-
+include('../config/dbcon.php');
 if(isset($_POST['register'])) {
 
     $email = $_POST["email"];
